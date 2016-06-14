@@ -1,21 +1,24 @@
 var ConstructorList = {
 
-	getJSON :  function() {
-		$.getJSON( "ajax/test.json", function( data ) {
-		  var items = [];
-		  $.each( data, function( key, val ) {
-		    items.push( "<li id='" + key + "'>" + val + "</li>" );
-		  });
-		 
-		  $( "<ul/>", {
-		    "class": "my-new-list",
-		    html: items.join( "" )
-		  }).appendTo( "body" );
-		});
-	}
+	getData: data.stat,
+	controller_page: {
+		per_page:50,
+		page:0
+	},
+
+
+	generateList :  function() {
+
+		for (var i = (this.controller_page.per_page * this.controller_page.page); i < ((this.controller_page.per_page * this.controller_page.page) + this.controller_page.per_page); i++ ) {
+			console.log (this.getData[i].city);
+		}
+
+
+	},
 
 	init : function() {
-		
+		this.generateList();
+
 	}
 
 }
