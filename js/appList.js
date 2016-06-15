@@ -34,6 +34,23 @@ var ConstructorList = {
 
 	},
 
+	generateFilter : function(tipeFilter) {
+		var xx = []
+		for (var i = 0; i < this.getData.length; i++ ) {
+			xx.push(this.getData[i].state); 
+		}
+
+		var uniqueArray = xx.filter(function(item, pos) {
+		    return xx.indexOf(item) == pos;
+		})
+
+		var templateFilterList = $("#filterState").html();
+		var html = Mustache.render(templateFilterList, uniqueArray);
+		$(".checkbox").append(html);
+
+
+	},
+
 	nextPaginator : function() {
 		if (this.controller_page.page < Math.floor(this.getData.length / this.controller_page.per_page)) {
 			this.controller_page.page++;
@@ -63,6 +80,7 @@ var ConstructorList = {
 	init : function(selector) {
 		this.container = selector;
 		this.generateList();
+		this.generateFilter();
 		this.events();
 
 	}
