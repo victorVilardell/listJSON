@@ -13,18 +13,25 @@
 </head>
 <body>
 	<div class="container">
-	<h1>Zips citys</h1>
-		<ul class="list-group contentList col-xs-12 col-sm-10 col-md-9 col-lg-9">
+		<h1>Zips citys</h1>
+		<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+			<ul>
+				<li>
+					
+				</li>
+			</ul>
+		</div>
+		<ul class="list-group contentList col-xs-12 col-sm-9 col-md-8 col-lg-8">
 
 			<script type="test/html" id="tplList">
-				<li class="list-group-item">
+				<li class="list-group-item" data-id-city="{{idCity}}">
 					<span>{{cityName}}</span> 
 					<span class="bold">{{stateName}}</span>
 				</li>
 			</script>
-			
+
 		</ul>
-		<p class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
+		<p class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
 			<a href="#" class="btnPrev btn btn-success btn-xs">Prev</a>
 			<a href="#" class="btnNext btn btn-success btn-xs">Next</a>
 		</p>

@@ -8,7 +8,13 @@ var ConstructorList = {
 	},
 
 
-	generateList :  function() {
+	generateList :  function(thisJSON) {
+		var getData;
+		if (thisJSON != undefined) {
+			getDataList = thisJSON
+		} else {
+			getDataList = this.getData
+		}
 
 		$(this.container).find("li").remove();
 
@@ -16,9 +22,11 @@ var ConstructorList = {
 
 		for (var i = (this.controller_page.per_page * this.controller_page.page); i < ((this.controller_page.per_page * this.controller_page.page) + this.controller_page.per_page); i++ ) {
 			var infoResult = {
-				cityName: this.getData[i].city,
-				stateName: this.getData[i].state
+				idCity: getDataList[i]._id,
+				cityName: getDataList[i].city,
+				stateName: getDataList[i].state
 			}
+
 			var html = Mustache.render(templateList, infoResult);
 			$(this.container).append(html);
 		}
