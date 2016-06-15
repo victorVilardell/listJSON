@@ -1,7 +1,7 @@
 var ConstructorList = {
 
 	getData: data.stat,
-	container : $(".contentList"),
+	container : null,
 	controller_page: {
 		per_page:50,
 		page:0
@@ -12,11 +12,15 @@ var ConstructorList = {
 
 		$(this.container).find("li").remove();
 
+		var templateList = $("#tplList").html();
+
 		for (var i = (this.controller_page.per_page * this.controller_page.page); i < ((this.controller_page.per_page * this.controller_page.page) + this.controller_page.per_page); i++ ) {
-			var cityName = $("<span>"+ this.getData[i].city +"</span>");
-			var stateName = $("<span class='bold'>"+ this.getData[i].state +"</span>");
-			var itemList = $("<li data-id-city='"+this.getData[i]._id+"' class='list-group-item'/>").append(cityName, stateName);
-			$(this.container).append(itemList);
+			var infoResult = {
+				cityName: this.getData[i].city,
+				stateName: this.getData[i].state
+			}
+			var html = Mustache.render(templateList, infoResult);
+			$(this.container).append(html);
 		}
 
 
@@ -37,18 +41,19 @@ var ConstructorList = {
 	},
 
 	events : function() {
-		$(".btnNext").on("click", function(e) {
+		$(document).on("click", ".btnNext", function(e) {
 			e.preventDefault();
 			ConstructorList.nextPaginator();
 		});
 
-		$(".btnPrev").on("click", function(e) {
+		$(document).on("click", ".btnPrev", function(e) {
 			e.preventDefault();
 			ConstructorList.prevPaginator();
 		})
 	},
 
-	init : function() {
+	init : function(selector) {
+		this.container = selector;
 		this.generateList();
 		this.events();
 
@@ -56,4 +61,4 @@ var ConstructorList = {
 
 }
 
-ConstructorList.init();
+ConstructorList.init(".contentList");

@@ -8,14 +8,23 @@
 	<link href="css/style.css" rel="stylesheet">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="node_modules/mustache/mustache.min.js"></script>
 	<script src="js/zips.js"></script>
 </head>
 <body>
 	<div class="container">
 	<h1>Zips citys</h1>
 		<ul class="list-group contentList col-xs-12 col-sm-10 col-md-9 col-lg-9">
+
+			<script type="test/html" id="tplList">
+				<li class="list-group-item">
+					<span>{{cityName}}</span> 
+					<span class="bold">{{stateName}}</span>
+				</li>
+			</script>
+			
 		</ul>
-		<p>
+		<p class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
 			<a href="#" class="btnPrev btn btn-success btn-xs">Prev</a>
 			<a href="#" class="btnNext btn btn-success btn-xs">Next</a>
 		</p>
