@@ -1,6 +1,7 @@
 var ConstructorList = {
 
 	getData: data.stat,
+	db : openDatabase('ZIPS', '1.0', 'Test DB', 2 * 1024 * 1024),
 	container : null,
 	controller_page: {
 		per_page:50,
@@ -34,6 +35,21 @@ var ConstructorList = {
 
 	},
 
+	webSQL : function () {
+
+		var d = this.getData;
+		var params;
+
+		this.db.transaction(function (tx) {
+			for (var o in d) {
+				params = [ d[o]._id +'"', '"'+ d[o].city +'"', '"'+ d[o].pop +'"', '"'+ d[o].state ].join();
+				tx.executeSql('CREATE TABLE IF NOT EXISTS zip (id unique, city, pop, state)');
+				tx.executeSql('INSERT INTO zip (id, city, pop, state) VALUES ('+ params +')');
+			}
+		})
+
+	},
+
 	nextPaginator : function() {
 		if (this.controller_page.page < Math.floor(this.getData.length / this.controller_page.per_page)) {
 			this.controller_page.page++;
@@ -64,6 +80,7 @@ var ConstructorList = {
 		this.container = selector;
 		this.generateList();
 		this.events();
+		this.webSQL();
 
 	}
 
