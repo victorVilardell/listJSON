@@ -42,7 +42,7 @@ var ConstructorList = {
 
 		this.db.transaction(function (tx) {
 			for (var o in d) {
-				params = [ d[o]._id +'"', '"'+ d[o].city +'"', '"'+ d[o].pop +'"', '"'+ d[o].state ].join();
+				params = ['"'+ d[o]._id +'"', '"'+ d[o].city +'"', '"'+ d[o].pop +'"', '"'+ d[o].state +'"'].join();
 				tx.executeSql('CREATE TABLE IF NOT EXISTS zip (id unique, city, pop, state)');
 				tx.executeSql('INSERT INTO zip (id, city, pop, state) VALUES ('+ params +')');
 			}
