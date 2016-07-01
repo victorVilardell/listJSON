@@ -35,6 +35,7 @@ var ConstructorList = {
 
 	},
 
+<<<<<<< HEAD
 	generateWebSQL: function() {
 
 		this.getData.map(function(e) {
@@ -44,6 +45,25 @@ var ConstructorList = {
 	},
 
 	/*webSQL : function () {
+=======
+	generateFilter : function(tipeFilter) {
+		var xx = []
+		for (var i = 0; i < this.getData.length; i++ ) {
+			xx.push(this.getData[i].state); 
+		}
+
+		var uniqueArray = xx.filter(function(item, pos) {
+		    return xx.indexOf(item) == pos;
+		})
+
+		var templateFilterList = $("#filterState").html();
+		var html = Mustache.render(templateFilterList, uniqueArray);
+		$(".checkbox").append(html);
+
+	},
+
+	webSQL : function () {
+>>>>>>> 7debecef297283a632427d0cf1560f2419c74bb9
 
 		var d = this.getData;
 		var params;
@@ -87,6 +107,7 @@ var ConstructorList = {
 	init : function(selector) {
 		this.container = selector;
 		this.generateList();
+		this.generateFilter();
 		this.events();
 		this.generateWebSQL();
 
