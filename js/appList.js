@@ -1,7 +1,7 @@
 var ConstructorList = {
 
 	getData: data.stat,
-	db : openDatabase('ZIPS', '1.0', 'Test DB', 2 * 1024 * 1024),
+	//db : openDatabase('ZIPS', '1.0', 'Test DB', 2 * 1024 * 1024),
 	container : null,
 	controller_page: {
 		per_page:50,
@@ -35,7 +35,15 @@ var ConstructorList = {
 
 	},
 
-	webSQL : function () {
+	generateWebSQL: function() {
+
+		this.getData.map(function(e) {
+			WebSQL.addItemDB(e)
+		})
+
+	},
+
+	/*webSQL : function () {
 
 		var d = this.getData;
 		var params;
@@ -48,7 +56,7 @@ var ConstructorList = {
 			}
 		})
 
-	},
+	},*/
 
 	nextPaginator : function() {
 		if (this.controller_page.page < Math.floor(this.getData.length / this.controller_page.per_page)) {
@@ -80,10 +88,10 @@ var ConstructorList = {
 		this.container = selector;
 		this.generateList();
 		this.events();
-		this.webSQL();
+		this.generateWebSQL();
 
 	}
 
 }
-
+WebSQL.index();
 ConstructorList.init(".contentList");
