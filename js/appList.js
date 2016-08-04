@@ -35,7 +35,6 @@ var ConstructorList = {
 
 	},
 
-<<<<<<< HEAD
 	generateWebSQL: function() {
 
 		this.getData.map(function(e) {
@@ -44,8 +43,7 @@ var ConstructorList = {
 
 	},
 
-	/*webSQL : function () {
-=======
+	/*
 	generateFilter : function(tipeFilter) {
 		var xx = []
 		for (var i = 0; i < this.getData.length; i++ ) {
@@ -61,22 +59,7 @@ var ConstructorList = {
 		$(".checkbox").append(html);
 
 	},
-
-	webSQL : function () {
->>>>>>> 7debecef297283a632427d0cf1560f2419c74bb9
-
-		var d = this.getData;
-		var params;
-
-		this.db.transaction(function (tx) {
-			for (var o in d) {
-				params = ['"'+ d[o]._id +'"', '"'+ d[o].city +'"', '"'+ d[o].pop +'"', '"'+ d[o].state +'"'].join();
-				tx.executeSql('CREATE TABLE IF NOT EXISTS zip (id unique, city, pop, state)');
-				tx.executeSql('INSERT INTO zip (id, city, pop, state) VALUES ('+ params +')');
-			}
-		})
-
-	},*/
+	*/
 
 	nextPaginator : function() {
 		if (this.controller_page.page < Math.floor(this.getData.length / this.controller_page.per_page)) {
@@ -107,12 +90,12 @@ var ConstructorList = {
 	init : function(selector) {
 		this.container = selector;
 		this.generateList();
-		this.generateFilter();
+		//this.generateFilter();
 		this.events();
-		this.generateWebSQL();
+		//this.generateWebSQL();
 
 	}
 
 }
-WebSQL.index();
+//WebSQL.index();
 ConstructorList.init(".contentList");
