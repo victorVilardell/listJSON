@@ -35,13 +35,21 @@ var ConstructorList = {
 
 	},
 
-	generateWebSQL: function() {
+	generateIndexed: function() {
+
+		this.getData.map(function(e) {
+			startDB.addDBElem(e)
+		})
+
+	},
+
+	/*generateWebSQL: function() {
 
 		this.getData.map(function(e) {
 			WebSQL.addItemDB(e)
 		})
 
-	},
+	},*/
 
 	/*
 	generateFilter : function(tipeFilter) {
@@ -93,6 +101,7 @@ var ConstructorList = {
 		//this.generateFilter();
 		this.events();
 		//this.generateWebSQL();
+		this.generateIndexed();
 
 	}
 

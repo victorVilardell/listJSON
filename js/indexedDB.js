@@ -34,11 +34,12 @@ if (!window.indexedDB) {
 						}
 					]
 				};
-				var thisdb = active.createObjectStore("people", {options});
+				var thisdb = active.createObjectStore("people", { keyPath : 'id', autoIncrement : true });
 
 				startDB.initIndexDB(thisdb, options.index)
 
 			};
+
 
             this.dataBase.onsuccess = function (e) {
                 alert('Base de datos cargada correctamente');
@@ -59,11 +60,22 @@ if (!window.indexedDB) {
 
 		},
 
-		addDBElem: function() {
+
+		addDBElem: function(elemPush) {
 
 			var active = startDB.dataBase.result;
             var data = active.transaction(["people"], "readwrite");
-            var object = data.objectStore("people");  
+            var object = data.objectStore("people");
+
+			var request = object.put(elemPush);
+
+			request.onerror = function (e) {
+                alert(request.error.name + '\n\n' + request.error.message);
+            };
+
+            data.oncomplete = function (e) {
+                alert('Objeto agregado correctamente');
+            };
 
 		},
 
